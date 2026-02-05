@@ -2,7 +2,7 @@ import {NextResponse} from "next/server";
 import {client_api} from "@/app/api/_lib/api";
 
 
-const ALLOWED_ORIGIN = 'https://chat-pr0xy-lilst0rmyb-3831-fedqas-projects-9de46a19.vercel.app';
+const ALLOWED_ORIGIN = 'http://localhost:3000';
 
 export async function POST(req: Request) {
     try {
