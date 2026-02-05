@@ -2,6 +2,8 @@ import {NextResponse} from "next/server";
 import {client_api} from "@/app/api/_lib/api";
 
 
+const ALLOWED_ORIGIN = 'https://chat-pr0xy-lilst0rmyb-3831-fedqas-projects-9de46a19.vercel.app';
+
 export async function POST(req: Request) {
     try {
         const requestBody = await req.json();
@@ -19,7 +21,10 @@ export async function POST(req: Request) {
 
         return NextResponse.json({
             completion
-        });
+        }, { headers: { 'Access-Control-Allow-Origin': ALLOWED_ORIGIN,
+                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                'Access-Control-Allow-Credentials': 'true', },});
     } catch(error) {
         console.log(error);
 
