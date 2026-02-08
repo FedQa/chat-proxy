@@ -1,5 +1,6 @@
 import {client_api} from "@/app/api/_lib/api";
 import {NextResponse} from "next/server";
+import {instruction} from "@/app/api/_lib/instruction";
 
 
 const ALLOWED_ORIGIN = '*';
@@ -12,9 +13,14 @@ export async function POST(req: Request) {
 
         const client = client_api();
 
+
         const completion = await client.chat.completions.create({
             model,
-            messages,
+            messages: [
+                {role: "system", content: instruction},
+                ...messages,
+            ],
+            response_format: { type: "json_object" },
         });
         console.log(completion.choices[0].message);
 

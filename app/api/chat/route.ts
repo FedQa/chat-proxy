@@ -16,11 +16,7 @@ export async function POST(req: Request) {
 
         const completion = await client.chat.completions.create({
             model,
-            messages: [
-                {role: "system", content: instruction},
-                ...messages,
-            ],
-            response_format: { type: "json_object" },
+            messages,
         });
         console.log(completion.choices[0].message);
 
