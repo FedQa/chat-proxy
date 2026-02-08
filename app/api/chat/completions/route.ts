@@ -22,14 +22,28 @@ export async function POST(req: Request) {
             ],
             response_format: { type: "json_object" },
         });
-        console.log(completion.choices[0].message);
+
+        const content = completion.choices[0].message.content;
+        let parsed;
+
+        if (!content) {
+            return NextResponse.json({ error: "Empty response from AI" }, { status: 500 });
+        } else {
+            try {
+                parsed = JSON.parse(content);
+            } catch(e) {
+                console.error("Failed to parse AI response:", content);
+                return NextResponse.json(
+                    { error: "Invalid JSON from AI", raw: content },
+                    { status: 500 }
+                );
+            }
+        }
 
 
         return NextResponse.json({
-            completion
+            resumeUpdate: parsed,
         })} catch(error) {
-        console.log(error);
-
         return new Response(
             JSON.stringify({ error: error instanceof Error ? error.message : 'An unknown error occurred' }),
             {
