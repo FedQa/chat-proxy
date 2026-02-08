@@ -8,14 +8,13 @@ export async function POST(req: Request) {
     try {
         const requestBody = await req.json();
 
-        const {model, messages, response_format} = requestBody;
+        const {model, messages} = requestBody;
 
         const client = client_api();
 
         const completion = await client.chat.completions.create({
             model,
             messages,
-            response_format
         });
         console.log(completion.choices[0].message);
 
