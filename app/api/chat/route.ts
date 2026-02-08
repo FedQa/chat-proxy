@@ -20,6 +20,7 @@ export async function POST(req: Request) {
                 {role: "system", content: instruction},
                 ...messages,
             ],
+            response_format: { type: "json_object" },
         });
         console.log(completion.choices[0].message);
 
