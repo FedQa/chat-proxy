@@ -46,7 +46,7 @@ export async function POST(req: Request) {
         },
         "job": ""
       }
-`;
+      If "projects","skills","education","work_experience" are empty, then fill it out yourself as an example.`;
         const client = client_api();
         const completion = await client.chat.completions.create({
             model: 'gpt-3.5-turbo',
