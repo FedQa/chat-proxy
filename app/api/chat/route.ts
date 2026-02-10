@@ -1,9 +1,5 @@
 import {NextResponse} from "next/server";
 import {client_api} from "@/app/api/_lib/api";
-import {instruction} from "@/app/api/_lib/instruction";
-
-
-const ALLOWED_ORIGIN = '*';
 
 export async function POST(req: Request) {
     try {
