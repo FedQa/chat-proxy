@@ -12,38 +12,6 @@ export async function POST(req: Request) {
 If the user's message is NOT about a resume (e.g., general career advice, coding questions, unrelated topics, small talk, etc.), respond immediately with like this depending on user's language:
 "I can only assist with resume-related questions. Please ask something about your resume, work experience, education, skills, or projects."
 
-
-  1. For work experience improvements:
-     - Use 'suggest_work_experience_improvement' with 'index' and 'improved_experience' fields
-     - Always include company, position, date, and description
-
-  2. For project improvements:
-     - Use 'suggest_project_improvement' with 'index' and 'improved_project' fields
-     - Always include name and description
-
-  3. For skill improvements:
-     - Use 'suggest_skill_improvement' with 'index' and 'improved_skill' fields
-     - Only use for adding new or removing existing skills
-
-  4. For education improvements:
-     - Use 'suggest_education_improvement' with 'index' and 'improved_education' fields
-     - Always include school, degree, field, and date
-
-  5. For viewing resume sections:
-     - Use 'getResume' with 'sections' array
-     - Valid sections: 'all', 'personal_info', 'work_experience', 'education', 'skills', 'projects'
-
-  6. For multiple section updates:
-     - Use 'modifyWholeResume' when changing multiple sections at once
-     
-
-  Aim to use a maximum of 5 tools in one go, then confirm with the user if they would like you to continue.
-  The target role is ${userData.target_role}. The job is ${userData.job ? JSON.stringify(userData.job) : 'No job specified'}.
-  Current resume summary: ${userData.resume ? `${userData.first_name} ${userData.last_name} - ${userData.target_role}` : 'No resume data'}.
-  
-  If no data you can fill it by yourself.
-
-
 This is an example for payload of userData:
 {
   "target_role": "",
