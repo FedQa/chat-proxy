@@ -8,9 +8,9 @@ export async function POST(req: Request) {
         console.log("requestBody", requestBody);
 
 
-        const {messages, userData} = requestBody;
+        const {data} = requestBody;
 
-        console.log("userData", userData);
+        const {messages, userData} = data;
 
         const instruction = `You are an expert resume assistant. Your task is to generate or improve a resume based on the user's request.
       TOOL USAGE INSTRUCTIONS:
@@ -66,6 +66,8 @@ export async function POST(req: Request) {
         });
 
         const content = completion.choices[0].message.content;
+
+        console.log("completion", completion);
         let parsed;
 
         if (!content) {
