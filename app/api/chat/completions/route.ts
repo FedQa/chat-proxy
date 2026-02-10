@@ -46,7 +46,49 @@ export async function POST(req: Request) {
         },
         "job": ""
       }
-      If "projects","skills","education","work_experience" are empty, then fill it out yourself as an example.`;
+      If "projects","skills","education","work_experience" or others are empty, then fill it out yourself as an example. 
+      Expected structure:
+        {
+          "first_name": string | undefined,
+          "last_name": string | undefined,
+          "email": string | undefined,
+          "phone_number": string | undefined,
+          "location": string | undefined,
+          "website": string | undefined,
+          "linkedin_url": string | undefined,
+          "github_url": string | undefined,
+          "target_role": string | undefined,
+          "work_experience": Array<{
+            "company": string,
+            "position": string,
+            "location"?: string,
+            "date": string,        // e.g., "Mar 2022 – Present" or "2021–2022"
+            "description": string[], // list of bullet points as plain strings (no markdown)
+            "technologies"?: string[]
+          }> | undefined,
+          "education": Array<{
+            "school": string,
+            "degree": string,
+            "field": string,
+            "location"?: string,
+            "date": string,        // e.g., "2017–2021"
+            "gpa"?: number | string,
+            "achievements"?: string[]
+          }> | undefined,
+          "skills": Array<{
+            "category": string,    // e.g., "Languages", "Frameworks"
+            "items": string[]      // e.g., ["JavaScript", "TypeScript"]
+          }> | undefined,
+          "projects": Array<{
+            "name": string,
+            "description": string[], // list of bullet points as plain strings
+            "date"?: string,
+            "technologies"?: string[],
+            "url"?: string,
+            "github_url"?: string
+          }> | undefined,
+          "explanation": string | undefined  // optional: short summary for chat UI
+        }`;
         const client = client_api();
         const completion = await client.chat.completions.create({
             model: 'gpt-3.5-turbo',
