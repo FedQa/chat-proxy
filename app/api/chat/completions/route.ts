@@ -52,7 +52,7 @@ export async function POST(req: Request) {
             model: 'gpt-4o-mini',
             messages: [
                 {role: "system", content: instruction},
-                ...messages,
+                {role: "user", content: messages},
             ],
             response_format: { type: "json_object" },
         });
