@@ -59,23 +59,17 @@ export async function POST(req: Request) {
 
         console.log("completion", completion);
 
-
-        const content = completion.choices[0].message.content;
-
-        console.log("content", content);
-
-
         let parsed;
 
-        if (!content) {
+        if (!completion) {
             return NextResponse.json({ error: "Empty response from AI" }, { status: 500 });
         } else {
             try {
-                parsed = JSON.parse(content);
+                parsed = completion;
             } catch(e) {
-                console.error("Failed to parse AI response:", content);
+                console.error("Failed to parse AI response:", completion);
                 return NextResponse.json(
-                    { error: "Invalid JSON from AI", raw: content },
+                    { error: "Invalid JSON from AI", raw: completion },
                     { status: 500 }
                 );
             }
