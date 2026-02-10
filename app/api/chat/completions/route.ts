@@ -66,7 +66,7 @@ Expected resume structure:
     "url"?: string,
     "github_url"?: string
   }> | undefined,
-  "explanation": string | undefined
+  "explanation": string | undefined // this field is required for message for user
 }`;
         const client = client_api();
         const completion = await client.chat.completions.create({
