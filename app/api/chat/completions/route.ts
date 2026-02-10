@@ -87,7 +87,7 @@ export async function POST(req: Request) {
             "url"?: string,
             "github_url"?: string
           }> | undefined,
-          "explanation": string | undefined  // optional: short summary for chat UI
+          "explanation": string | undefined  // required: short summary for chat UI or your answer
         }`;
         const client = client_api();
         const completion = await client.chat.completions.create({
