@@ -10,7 +10,13 @@ export async function POST(req: Request) {
 
         const {data} = requestBody;
 
+        console.log("data", data);
+
+
         const {messages, userData} = data;
+
+        console.log("userData", userData);
+
 
         const instruction = `You are an expert resume assistant. Your task is to generate or improve a resume based on the user's request.
       TOOL USAGE INSTRUCTIONS:
