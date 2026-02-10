@@ -4,20 +4,8 @@ import {NextResponse} from "next/server";
 export async function POST(req: Request) {
     try {
         const requestBody = await req.json();
-
-        console.log("requestBody", requestBody);
-
-
         const {data} = requestBody;
-
-        console.log("data", data);
-
-
         const {messages, userData} = data;
-
-        console.log("userData", userData);
-
-
         const instruction = `You are an expert resume assistant. Your task is to generate or improve a resume based on the user's request.
       TOOL USAGE INSTRUCTIONS:
       1. For work experience improvements:
@@ -60,8 +48,6 @@ export async function POST(req: Request) {
       }
 `;
         const client = client_api();
-
-
         const completion = await client.chat.completions.create({
             model: 'gpt-4o-mini',
             messages: [
@@ -71,9 +57,14 @@ export async function POST(req: Request) {
             response_format: { type: "json_object" },
         });
 
+        console.log("completion", completion);
+
+
         const content = completion.choices[0].message.content;
 
-        console.log("completion", completion);
+        console.log("content", content);
+
+
         let parsed;
 
         if (!content) {
