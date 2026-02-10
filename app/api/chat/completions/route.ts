@@ -5,6 +5,9 @@ export async function POST(req: Request) {
     try {
         const requestBody = await req.json();
 
+        console.log("requestBody", requestBody);
+
+
         const {messages, userData} = requestBody;
 
         console.log("userData", userData);
