@@ -57,7 +57,7 @@ export async function POST(req: Request) {
 
 
         const completion = await client.chat.completions.create({
-            model: userData.config.model,
+            model: 'gpt-4o-mini',
             messages: [
                 {role: "system", content: instruction},
                 ...messages,
