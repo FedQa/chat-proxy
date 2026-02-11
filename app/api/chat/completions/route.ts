@@ -4,6 +4,8 @@ export async function POST(req: Request) {
     try {
         const { aiRequestBody } = await req.json();
 
+        console.log("REQ BODY", aiRequestBody);
+
       return NextResponse.json({
         aiRequestBody,
       });
