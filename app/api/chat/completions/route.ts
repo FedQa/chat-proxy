@@ -1,42 +1,23 @@
 import {NextResponse} from "next/server";
+import {client_api} from "@/app/api/_lib/api";
 
 export async function POST(req: Request) {
     try {
         const { userData } = await req.json();
 
-        console.log("REQ BODY", req);
+        console.log("userData",userData);
+        const completion = await client_api.chat.completions.create(userData);
 
-        console.log(req.json());
+        console.log("completion", completion);
 
-      return NextResponse.json({
-          userData
-      });
+        if (!completion) {
+            return NextResponse.json({ error: "Ошибка, попробуй позже" }, { status: 500 });
+        } else {
+            return NextResponse.json({
+                completion
+            })
+        }
 
-        // const completion = await client_api.chat.completions.create(aiRequestBody);
-        //
-        // console.log("completion", completion);
-        // console.log(userDara);
-        //
-        // let parsed;
-        //
-        // if (!completion) {
-        //     return NextResponse.json({ error: "Ошибка, попробуй позже" }, { status: 500 });
-        // } else {
-        //     try {
-        //         parsed = completion;
-        //     } catch(e) {
-        //         console.error("Failed to parse AI response:", completion);
-        //         return NextResponse.json(
-        //             { error: "Ошибка, попробуй позже", raw: completion },
-        //             { status: 500 }
-        //         );
-        //     }
-        // }
-        //
-        //
-        // return NextResponse.json({
-        //     resumeUpdate: parsed,
-        // })
     } catch(error) {
         return new Response(
             JSON.stringify({ error: error instanceof Error ? error.message : 'An unknown error occurred' }),
