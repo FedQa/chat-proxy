@@ -1,17 +1,12 @@
 import {NextResponse} from "next/server";
-import client_api from "@/app/api/_lib/api";
-
+import {client_api} from "@/app/api/_lib/api";
 
 export async function POST(req: Request) {
     try {
         const requestBody = await req.json();
-
         const {model, messages} = requestBody;
 
-        const client = client_api();
-
-
-        const completion = await client.chat.completions.create({
+        const completion = await client_api.chat.completions.create({
             model,
             messages,
         });
