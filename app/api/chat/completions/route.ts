@@ -5,6 +5,10 @@ export async function POST(req: Request) {
     try {
         const { userDara, aiRequestBody } = await req.json();
 
+      return NextResponse.json({
+        aiRequestBody,
+      });
+
         const completion = await client_api.chat.completions.create(aiRequestBody);
 
         console.log("completion", completion);
@@ -29,7 +33,8 @@ export async function POST(req: Request) {
 
         return NextResponse.json({
             resumeUpdate: parsed,
-        })} catch(error) {
+        })
+    } catch(error) {
         return new Response(
             JSON.stringify({ error: error instanceof Error ? error.message : 'An unknown error occurred' }),
             {
