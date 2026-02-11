@@ -2,12 +2,12 @@ import {NextResponse} from "next/server";
 
 export async function POST(req: Request) {
     try {
-        const { aiRequestBody } = await req.json();
+        const { userData } = await req.json();
 
-        console.log("REQ BODY", aiRequestBody);
+        console.log("REQ BODY", userData);
 
       return NextResponse.json({
-        aiRequestBody,
+          userData
       });
 
         // const completion = await client_api.chat.completions.create(aiRequestBody);
