@@ -3,12 +3,12 @@ import {NextResponse} from "next/server";
 
 export async function POST(req: Request) {
     try {
-        const { userDara, aiRequestBody } = await req.json();
+        const { userData, aiRequestBody } = await req.json();
 
         const completion = await client_api.chat.completions.create(aiRequestBody);
 
         console.log("completion", completion);
-        console.log(userDara);
+        console.log(userData);
 
         let parsed;
 
