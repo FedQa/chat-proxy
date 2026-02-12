@@ -1,6 +1,8 @@
 import {OpenAI} from "openai";
 
-export const client_api = new OpenAI({
+const client_api = new OpenAI({
     apiKey: 'sk-MzjA4oXhO50QsaLQQWHEGA',
     baseURL: 'https://api.artemox.ru/v1',
 });
+
+export default client_api;
