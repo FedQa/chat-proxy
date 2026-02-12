@@ -5,10 +5,10 @@ export async function POST(req: Request) {
     try {
         const { userData, aiRequestBody } = await req.json();
 
+        console.log("aiRequestBody", aiRequestBody);
+
         const completion = await client_api.chat.completions.create(aiRequestBody);
 
-        console.log("completion", completion);
-        console.log(userData);
 
         let parsed;
 
